@@ -21,10 +21,14 @@ public class Search {
     private Node getRoot(String boardString) {
         // TODO: Implement this function.
         // NOTE: This is the only function you need to modify in this class!
-        String[] boardStringSplit = boardString.split("|");
-        String[]
-        for(int i = 0; i)
-        return
+
+        String[] boardStringSplit = boardString.split("\\|");
+        String[][] matrix = new String[boardStringSplit.length][(int)(boardStringSplit[0].length()/2)+1];
+        for (int i = 0 ; i < boardStringSplit.length ; i++ ){
+            matrix[i] = boardStringSplit[i].split(" ");
+        }
+        Node initialVortex = new Node(matrix);
+        return initialVortex;
     }
 
     /**
