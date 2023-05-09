@@ -1,6 +1,7 @@
 public class State {
     public boolean isGoal() {
 
+
         return true;
     }
     public String[] actions() {
