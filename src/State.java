@@ -1,28 +1,40 @@
 public class State {
-    public String[][] boarddd;
-    public State(String[][] boarddd) {
-        this.boarddd = boarddd;
+    public String[][] board;
+    public State(String[][] board) {
+        this.board = board;
     }
     public boolean isGoal() {
+
+        /**
+        //Prints the board.
+        for(int i = 0; i < board.length; i++) {
+            System.out.println();
+            for(int j = 0; j < board[0].length; j++) {
+                System.out.print(board[i][j]);
+            }
+            System.out.println();
+        }
+         **/
+
         boolean isValid = true;
-        if (boarddd[boarddd.length][boarddd[0].length] == "_"){
-            for (int i = 0; i < boarddd.length; i++ ){
-                for (int j = 0; j < boarddd[0].length; j++){
-                    if(!(i == boarddd.length - 1 && j == boarddd[0].length - 2)){
-                        if(Integer.parseInt(boarddd[i][j]) < Integer.parseInt(boarddd[i][j+1])){
-                            isValid = true;
-                        }else{
-                            return false;
+            if (board[board.length][board[0].length].equals("_")){
+                for (int i = 0; i < board.length; i++ ){
+                    for (int j = 0; j < board[0].length; j++){
+                        if(!(i == board.length - 1 && j == board[0].length - 2)){
+                            if(Integer.parseInt(board[i][j]) < Integer.parseInt(board[i][j+1])){
+                                isValid = true;
+                            }else{
+                                return false;
+                            }
+                        }else if(isValid){
+                            return true;
                         }
-                    }else if(isValid){
-                        return true;
                     }
                 }
+            }else{
+                return false;
             }
-        }else{
-            return false;
-        }
-        return true;
+            return true;
     }
     public String[] actions() {
         String[] arrOfPossibleActions = {"up", "down", "right", "left"};

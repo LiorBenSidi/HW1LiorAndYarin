@@ -1,5 +1,6 @@
 public class Tile {
     private int num;
+    private int value;
     public Tile(int num) {
     }
     public Tile() {

@@ -2,6 +2,7 @@ import java.util.Arrays;
 
 public class Board {
     public String strBoard;
+    public String[] tiles;
     public Board(String strBoard) {
         this.strBoard = "7 5 4|_ 3 2|8 1 6";
     }

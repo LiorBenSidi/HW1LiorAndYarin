@@ -2,12 +2,12 @@ public class Action {
     public int tile;
 
     public String toString() {
-        for(EnumDirection direction : EnumDirection.values()) {
+//        for(Direction direction : Direction.values()) {
 
-        }
-        EnumDirection direction = EnumDirection.UP;
+  //      }
+        Direction direction = Direction.UP;
         String down = "down";
-        System.out.println(direction);
+    //    System.out.println(direction);
         return "Move " + this.tile + " " + down;
     }
 }
