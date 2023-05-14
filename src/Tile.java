@@ -1,10 +1,10 @@
 public class Tile {
-    private int num;
     private int value;
-    public Tile(int num) {
+    public Tile(int value) {
+        this.value = value;
     }
-    public Tile() {
-
+    public int getValue() {
+        return value;
     }
     @Override
     public boolean equals(Object other) {
@@ -14,7 +14,6 @@ public class Tile {
         Tile tile = (Tile) other;
         return value == tile.value;
     }
-
     @Override
     public int hashCode() {
         return Integer.hashCode(value);

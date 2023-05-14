@@ -1,10 +1,14 @@
 public class State {
-    public String[][] board;
-    public State(String[][] board) {
-        this.board = board;
-    }
-    public boolean isGoal() {
+    public Tile[][] tiles;
+    private Board board;
+    public Action[] arrOfPossibleActions;
 
+    public State(Tile[][] tiles) {
+        this.tiles = tiles;
+    }
+
+    public boolean isGoal() {
+        tiles = board.getTiles();
         /**
         //Prints the board.
         for(int i = 0; i < board.length; i++) {
@@ -15,13 +19,12 @@ public class State {
             System.out.println();
         }
          **/
-
         boolean isValid = true;
-            if (board[board.length][board[0].length].equals("_")){
-                for (int i = 0; i < board.length; i++ ){
-                    for (int j = 0; j < board[0].length; j++){
-                        if(!(i == board.length - 1 && j == board[0].length - 2)){
-                            if(Integer.parseInt(board[i][j]) < Integer.parseInt(board[i][j+1])){
+            if (tiles[tiles.length][tiles[0].length].equals("_")){
+                for (int i = 0; i < tiles.length; i++){
+                    for (int j = 0; j < tiles[0].length; j++){
+                        if(!(i == tiles.length - 1 && j == tiles[0].length - 2)){
+                            if(tiles[i][j].getValue() < tiles[i][j+1].getValue()){
                                 isValid = true;
                             }else{
                                 return false;
@@ -36,8 +39,26 @@ public class State {
             }
             return true;
     }
-    public String[] actions() {
-        String[] arrOfPossibleActions = {"up", "down", "right", "left"};
+    public Action[] actions() {
+        //"7 5 4|_ 3 2|8 1 6"
+        for(int i = 0; i < tiles.length; i++) {
+            for(int j = 0; j <  tiles[0].length; j++) {
+                if(tiles[i][j].equals("_")) {
+                    if(j == 0 && i == 0) {
+                        arrOfPossibleActions = new Action[]{new Action(Direction.LEFT), new Action(Direction.UP)};
+                    }
+                    if(j == 0 && i != 0 && i != (tiles.length - 1)) {
+                        arrOfPossibleActions = new Action[]{new Action(Direction.LEFT), new Action(Direction.UP), new Action(Direction.DOWN)};
+                    }
+                    if(j == 0 && i == (tiles.length - 1)) {
+                        arrOfPossibleActions = new Action[]{new Action(Direction.LEFT), new Action(Direction.DOWN)};
+                    }
+                    if(i == 0 && j != 0 && j != (tiles[0].length)) {
+                        arrOfPossibleActions = new Action[]{new Action(Direction.LEFT), new Action(Direction.RIGHT), new Action(Direction.UP)};
+                    }
+                }
+            }
+        }
         return arrOfPossibleActions;
     }
     public State result(Action action) {

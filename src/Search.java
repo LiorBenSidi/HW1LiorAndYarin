@@ -22,10 +22,25 @@ public class Search {
         // TODO: Implement this function.
         // NOTE: This is the only function you need to modify in this class!
 
+        //"7 5 4|_ 3 2|8 1 6"
+
+        //Creates matrix of tiles.
         String[] boardStringSplit = boardString.split("\\|");
-        String[][] matrix = new String[boardStringSplit.length][(int)(boardStringSplit[0].length()/2)+1];
+
+
+        String[][] matrix = new String[boardStringSplit.length][(boardStringSplit[0].length()/2)+1];
         for (int i = 0 ; i < boardStringSplit.length ; i++ ){
             matrix[i] = boardStringSplit[i].split(" ");
+        }
+
+
+
+        //Creates matrix of tiles.
+        Tile[][] matrixTile = new  Tile[boardStringSplit.length][(boardStringSplit[0].length()/2)+1];
+        for(int i = 0; i < boardStringSplit.length; i++) {
+           for(int j = 0; j < (boardStringSplit[0].length()/2)+1; j++) {
+               matrixTile[i][j] = matrix[i][j];
+           }
         }
 
         /**
@@ -48,6 +63,7 @@ public class Search {
      * @param boardString String representing the initial board
      * @return List of actions which performing them will lead to the the goal state
      */
+
     public List<Action> search(String boardString) {
         try {
             Node root = getRoot(boardString);
