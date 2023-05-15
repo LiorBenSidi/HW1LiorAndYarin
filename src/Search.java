@@ -18,12 +18,13 @@ public class Search {
      * @param boardString String representing the initial board
      * @return The root node used to search for a solution
      */
-    private Node getRoot(String boardString) {
+    private Node getRoot(String boardString) { /** 3->4 **/
         // TODO: Implement this function.
         // NOTE: This is the only function you need to modify in this class!
 
         Node root = new Node(); /* Creates an instance of "Node", named "root". */
-        State rootState = new State(new Board(boardString)); /* Creates an instance of "State", named "rootState",
+        Board rootBoard = new Board(boardString);
+        State rootState = new State(rootBoard); /* Creates an instance of "State", named "rootState",
         that compose an instance of "Board", that gets "boardString". */
         root.setState(rootState); /* Sets the state of "root" according to "rootState". */
         return root; /* Returns the instance of "Node" - "root". */
@@ -35,9 +36,9 @@ public class Search {
      * @param boardString String representing the initial board
      * @return List of actions which performing them will lead to the the goal state
      */
-    public List<Action> search(String boardString) {
-        try {
-            Node root = getRoot(boardString);
+    public List<Action> search(String boardString) { /** 1->2 **/
+        try { // The Try Catch in java statements allows you to define a block of code to be tested for exceptions (errors) while it is being executed.
+            Node root = getRoot(boardString); /**3**/  // Creates an instance of "Node"
 
             Queue<Node> frontier = new PriorityQueue<>(Comparator.comparing(Node::heuristicValue));  // Stores future nodes
             Set<State> enqueued = new HashSet<>();  // Used for duplicate detection

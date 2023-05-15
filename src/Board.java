@@ -5,7 +5,7 @@ public class Board {
     private Tile[][] goalTiles;
     private String strBoard;
     public Board(String strBoard) { //"7 5 4|_ 3 2|8 1 6" // Creates a board(matrix of tiles).
-        this.strBoard = strBoard;
+        // this.strBoard = strBoard;
         String[] strBoardSplit = strBoard.split("\\|"); //["7 5 4","_ 3 2","8 1 6"]
         int tempSplit = strBoardSplit[0].split(" ").length;
         this.tiles = new Tile[strBoardSplit.length][tempSplit];

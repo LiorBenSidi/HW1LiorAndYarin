@@ -32,7 +32,7 @@ public class Main {
      */
     private static boolean searchOnce(String boardString) {
         Search search = new Search();
-        Thread t = new Thread(() -> search.search(boardString));
+        Thread t = new Thread(() -> search.search(boardString)); /** 1 **/
         t.start();  // Start searching for a solution
         try {
             t.join(60000);  // Wait for (at most) 60 seconds
