@@ -4,7 +4,7 @@ public class Node { /* Contains information about the current state, the parent 
     private Node parent; /* Initialize an instance of "Node", named "parent". */
     private Action action; /* Initialize an instance of "Action", named "action". */
 
-    public Node(State state, Node parent, Action action) {
+    public Node(State state, Node parent, Action action) { /** 12 **/
         this.state = state;
         this.parent = parent;
         this.action = action;
@@ -12,8 +12,8 @@ public class Node { /* Contains information about the current state, the parent 
 
     public Node() {
     }
-    public State getState() {
-        return state;
+    public State getState() { /** 15 **/
+        return this.state;
     }
 
     public void setState(State state) {
@@ -21,20 +21,20 @@ public class Node { /* Contains information about the current state, the parent 
     }
 
     public Node getParent() {
-        return parent;
+        return this.parent;
     }
     public Action getAction(){
         action.toString();
-        return action;
+        return this.action;
     }
 
-    public Node[] expand() {
+    public Node[] expand() { /** 20 **/
         State currentState = this.state; // Access the current state from the Node
-        Action[] validActions = currentState.actions(); // Get the valid actions that can be applied to the current state
+        Action[] validActions = currentState.actions(); /** 21 **/ // Get the valid actions that can be applied to the current state
         Node[] childNodes = new Node[validActions.length]; // Create an array to store the child nodes
         for (int i = 0; i < validActions.length; i++) { // Generate child nodes by applying each valid action to the current state
             Action action = validActions[i];
-            State nextState = currentState.result(action);
+            State nextState = currentState.result(action); /** 23 **/
             Node childNode = new Node(nextState, this, action);
             childNodes[i] = childNode;
         }

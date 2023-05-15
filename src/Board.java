@@ -4,12 +4,13 @@ public class Board {
     private Tile[][] tiles;
     private Tile[][] goalTiles;
     private String strBoard;
-    public Board(String strBoard) { //"7 5 4|_ 3 2|8 1 6" // Creates a board(matrix of tiles).
-        // this.strBoard = strBoard;
+    public Board(String strBoard) { /** 6 **/ //"7 5 4|_ 3 2|8 1 6" // Creates a board(matrix of tiles).
+        this.strBoard = strBoard;
         String[] strBoardSplit = strBoard.split("\\|"); //["7 5 4","_ 3 2","8 1 6"]
-        int tempSplit = strBoardSplit[0].split(" ").length;
-        this.tiles = new Tile[strBoardSplit.length][tempSplit];
-        for(int i = 0; i < strBoardSplit.length; i++) {
+        int numOfCol = strBoardSplit[0].split(" ").length;
+        int numOfRow = strBoardSplit.length;
+        this.tiles = new Tile[numOfRow][numOfCol];
+        for(int i = 0; i < numOfRow; i++) {
             String[] strBoardSecondSplit = strBoardSplit[i].split(" ");
             for(int j = 0; j < strBoardSecondSplit.length; j++) {
                 String titleValue = strBoardSecondSplit[j];
@@ -32,7 +33,8 @@ public class Board {
         }
     }
 
-    public Tile[][] getGoalTiles() { // Gets the "Target Board".
+    public Tile[][] getGoalTiles() { /** 18 **/ // Gets the "Target Board".
+        Tile[][] tiles = this.tiles;
         int numRows = tiles.length;
         int numCols = tiles[0].length;
 
@@ -49,8 +51,8 @@ public class Board {
         return goalTiles;
     }
 
-    public Tile[][] getTiles() {
-        return tiles;
+    public Tile[][] getTiles() { /** 10 **/
+        return this.tiles;
     }
 
     @Override

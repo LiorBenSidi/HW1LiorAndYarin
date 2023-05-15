@@ -18,15 +18,16 @@ public class Search {
      * @param boardString String representing the initial board
      * @return The root node used to search for a solution
      */
-    private Node getRoot(String boardString) { /** 3->4 **/
-        // TODO: Implement this function.
+    private Node getRoot(String boardString) { /** 4 **/
         // NOTE: This is the only function you need to modify in this class!
 
-        Node root = new Node(); /* Creates an instance of "Node", named "root". */
-        Board rootBoard = new Board(boardString);
-        State rootState = new State(rootBoard); /* Creates an instance of "State", named "rootState",
+        Board rootBoard = new Board(boardString); /** 5 **/
+        State rootState = new State(rootBoard); /** 7 **//* Creates an instance of "State", named "rootState",
         that compose an instance of "Board", that gets "boardString". */
-        root.setState(rootState); /* Sets the state of "root" according to "rootState". */
+        Node rootParent = null;
+        Action rootAction = null;
+        Node root = new Node(rootState, rootParent, rootAction); /** 11 **//* Creates an instance of "Node", named "root". */
+        // root.setState(rootState); /* Sets the state of "root" according to "rootState". */
         return root; /* Returns the instance of "Node" - "root". */
     }
 
@@ -36,9 +37,9 @@ public class Search {
      * @param boardString String representing the initial board
      * @return List of actions which performing them will lead to the the goal state
      */
-    public List<Action> search(String boardString) { /** 1->2 **/
+    public List<Action> search(String boardString) { /** 2 **/
         try { // The Try Catch in java statements allows you to define a block of code to be tested for exceptions (errors) while it is being executed.
-            Node root = getRoot(boardString); /**3**/  // Creates an instance of "Node"
+            Node root = getRoot(boardString); /**3**/ /** 13 **/  // Creates an instance of "Node"
 
             Queue<Node> frontier = new PriorityQueue<>(Comparator.comparing(Node::heuristicValue));  // Stores future nodes
             Set<State> enqueued = new HashSet<>();  // Used for duplicate detection
@@ -47,13 +48,13 @@ public class Search {
 
             while (!frontier.isEmpty()) {
                 Node node = frontier.remove();  // Get a node with smallest heuristic value
-                if (node.getState().isGoal()) {
+                if (node.getState().isGoal()) { /** 14 **/
                     result = extractSolution(node);  // Extracting the solution
                     status = Status.SOLVED;
                     return result;
                 }
                 expandedNodes++;
-                Node[] children = node.expand();
+                Node[] children = node.expand(); /** 19 **/
 
                 for (Node child : children) {  // Iterate over all possible child nodes
                     if (!enqueued.contains(child.getState())) {  // Check for duplication
