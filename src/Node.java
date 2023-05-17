@@ -25,8 +25,12 @@ public class Node { /* Contains information about the current state, the parent 
         return this.parent;
     }
     public Action getAction(){
-        this.action.toString();
-        return this.action;
+        if(action == null){
+            return null;
+        }else{
+            action.toString();
+            return this.action;
+        }
     }
 
     public Node[] expand() { /** 20 **/

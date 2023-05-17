@@ -21,13 +21,12 @@ public class Search {
     private Node getRoot(String boardString) { /** 4 **/
         // NOTE: This is the only function you need to modify in this class!
 
-        Board rootBoard = new Board(boardString); /** 5 **/
+        Board rootBoard = new Board(boardString);/** 5 **/
         State rootState = new State(rootBoard); /** 7 **//* Creates an instance of "State", named "rootState",
         that compose an instance of "Board", that gets "boardString". */
         //Node rootParent = null;
         //Action rootAction = null;
-        Node root = new Node(rootState); /** 11 **//* Creates an instance of "Node", named "root". */
-        // root.setState(rootState); /* Sets the state of "root" according to "rootState". */
+        Node root = new Node(rootState, null, null); /** 11 **//* Creates an instance of "Node", named "root". */
 
         return root; /* Returns the instance of "Node" - "root". */
     }
