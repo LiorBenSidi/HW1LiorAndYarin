@@ -68,8 +68,8 @@ public class State {
         boolean isEmptyTile;
 
         // Find the position of the empty tile.
-        int emptyRow = -1;
-        int emptyCol = -1;
+        int emptyRow = 0;
+        int emptyCol = 0;
         int numOfRow = tiles.length;
         int numOfCol = tiles[0].length;
         for (int i = 0; i < numOfRow; i++) {
@@ -142,6 +142,7 @@ public class State {
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
                 count++;
+                colFlag = false;
             }
         }
 
@@ -165,10 +166,11 @@ public class State {
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
                 count++;
+                colFlag = false;
             }
         }
 
-        if (emptyRow > 0 && emptyRow != numOfRow - 1) {// Action number 1.
+        if (emptyRow > 0 && emptyRow < numOfRow - 1) {
             if (emptyCol == 0) {
                 possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
                 count++;
@@ -235,8 +237,8 @@ public class State {
         }
 
         // Find the position of the empty tile
-         int emptyRow = -1;
-         int emptyCol = -1;
+         int emptyRow = 0;
+         int emptyCol = 0;
         for (int i = 0; i < newTiles.length; i++) {
             boolean isEmptyTile = false;
             for (int j = 0; j < newTiles[i].length && !isEmptyTile; j++) {
@@ -271,7 +273,7 @@ public class State {
         }
 
         // Swap the empty tile with the adjacent tile
-      //  Tile temp = newTiles[emptyRow][emptyCol];
+        //Tile temp = newTiles[emptyRow][emptyCol];
         //newTiles[emptyRow][emptyCol] = newTiles[newRow][newCol];
         //newTiles[newRow][newCol] = temp;
         Board newBoard = new Board(newTiles);

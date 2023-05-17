@@ -28,6 +28,7 @@ public class Search {
         //Action rootAction = null;
         Node root = new Node(rootState); /** 11 **//* Creates an instance of "Node", named "root". */
         // root.setState(rootState); /* Sets the state of "root" according to "rootState". */
+
         return root; /* Returns the instance of "Node" - "root". */
     }
 

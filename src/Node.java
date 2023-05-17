@@ -25,7 +25,7 @@ public class Node { /* Contains information about the current state, the parent 
         return this.parent;
     }
     public Action getAction(){
-        action.toString();
+        this.action.toString();
         return this.action;
     }
 
@@ -36,7 +36,7 @@ public class Node { /* Contains information about the current state, the parent 
         for (int i = 0; i < validActions.length; i++) { // Generate child nodes by applying each valid action to the current state
             Action action = validActions[i];
             State nextState = currentState.result(action); /** 23 **/
-            Node childNode = new Node(nextState, this, action);
+            Node childNode = new Node(this.state, this.parent, this.action);
             childNodes[i] = childNode;
         }
         return childNodes;
