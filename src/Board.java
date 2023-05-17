@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class Board {
     private Tile[][] tiles;
-    private Tile[][] goalTiles;
+    private static Tile[][] goalTiles;
     private String strBoard;
     public Board(String strBoard) { /** 6 **/ //"7 5 4|_ 3 2|8 1 6" // Creates a board(matrix of tiles).
         this.strBoard = strBoard;

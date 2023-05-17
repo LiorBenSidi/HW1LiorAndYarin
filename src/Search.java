@@ -24,6 +24,7 @@ public class Search {
         Board rootBoard = new Board(boardString);/** 5 **/
         State rootState = new State(rootBoard); /** 7 **//* Creates an instance of "State", named "rootState",
         that compose an instance of "Board", that gets "boardString". */
+
         //Node rootParent = null;
         //Action rootAction = null;
         Node root = new Node(rootState, null, null); /** 11 **//* Creates an instance of "Node", named "root". */

@@ -3,6 +3,7 @@ public class Node { /* Contains information about the current state, the parent 
     private State state; /* Initialize an instance of "State", named "state". */
     private Node parent; /* Initialize an instance of "Node", named "parent". */
     private Action action   ; /* Initialize an instance of "Action", named "action". */
+    private Node[] childNodes;
 
     public Node(State state, Node parent, Action action) { /** 12 **/
         this.state = state;
@@ -40,13 +41,18 @@ public class Node { /* Contains information about the current state, the parent 
         for (int i = 0; i < validActions.length; i++) { // Generate child nodes by applying each valid action to the current state
             Action action = validActions[i];
             State nextState = currentState.result(action); /** 23 **/
-            Node childNode = new Node(this.state, this.parent, this.action);
+            parent = new Node(this.state);
+            Node childNode = new Node(nextState, this.parent, action);
             childNodes[i] = childNode;
         }
+        this.childNodes = childNodes;
         return childNodes;
     }
     public int heuristicValue() {
+        boolean isLowest = false;
+        for(int i = 0; i < childNodes.length && !isLowest; i++) {
 
+        }
         return 0;
     }
 }
