@@ -35,7 +35,7 @@ public class Main {
         Thread t = new Thread(() -> search.search(boardString)); /** 1 **/
         t.start();  // Start searching for a solution
         try {
-            t.join(600000000);  // Wait for (at most) 60 seconds
+            t.join(60000);  // Wait for (at most) 60 seconds
         } catch (InterruptedException e) {
         }
         boolean success = false;
