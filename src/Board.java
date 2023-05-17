@@ -23,6 +23,10 @@ public class Board {
         }
     }
 
+    public Board(Tile[][] tiles) {
+        this.tiles = tiles;
+    }
+
     public void printBoard() {
         for(int i = 0; i < tiles.length; i++) {
             System.out.println();

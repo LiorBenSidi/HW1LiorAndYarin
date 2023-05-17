@@ -2,7 +2,7 @@ public class Node { /* Contains information about the current state, the parent 
                     and the action that led to the current state from the parent node. */
     private State state; /* Initialize an instance of "State", named "state". */
     private Node parent; /* Initialize an instance of "Node", named "parent". */
-    private Action action; /* Initialize an instance of "Action", named "action". */
+    private Action action   ; /* Initialize an instance of "Action", named "action". */
 
     public Node(State state, Node parent, Action action) { /** 12 **/
         this.state = state;
@@ -10,7 +10,8 @@ public class Node { /* Contains information about the current state, the parent 
         this.action = action;
     }
 
-    public Node() {
+    public Node(State state) {
+        this.state = state;
     }
     public State getState() { /** 15 **/
         return this.state;

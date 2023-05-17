@@ -36,7 +36,7 @@ public class Action { //"Action" in the game is defined by moving a tile to empt
         return direction;
     }
     public String toString() {
-        return "Move " + this.tile.getValue() + " " + this.direction;
+        return "Move " + tile.getValue() + " " + direction;
     }
 }
 
