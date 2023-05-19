@@ -1,6 +1,6 @@
 public class State {
     //public Tile[][] tiles;
-    public Board board;
+    private Board board;
     //public Action[] arrOfPossibleActions;
     //public State(Tile[][] tiles) {
       //  this.tiles = tiles;
@@ -18,50 +18,18 @@ public class State {
         Tile[][] tiles = board.getTiles();
 
         // Compare the values of tiles with the goalTiles array.
-        for (int i = 0; i < tiles.length; i++) {
-            for (int j = 0; j < tiles[i].length; j++) {
-                if ((tiles[i][j].getValue() != (goalTiles[i][j]).getValue())) {
+        for(int i = 0; i < tiles.length; i++) {
+            for(int j = 0; j < tiles[i].length; j++) {
+                if(tiles[i][j].getValue() != (goalTiles[i][j]).getValue()) {
                     return false; // Found a tile that doesn't match the goal configuration.
                 }
             }
         }
         return true; // All tiles match the goal configuration.
-        /*
-        tiles = board.getTiles();
-
-        //Prints the board.
-        for(int i = 0; i < board.length; i++) {
-            System.out.println();
-            for(int j = 0; j < board[0].length; j++) {
-                System.out.print(board[i][j]);
-            }
-            System.out.println();
-        }
-
-        boolean isValid = true;
-            if (tiles[tiles.length][tiles[0].length].equals("_")){
-                for (int i = 0; i < tiles.length; i++){
-                    for (int j = 0; j < tiles[0].length; j++){
-                        if(!(i == tiles.length - 1 && j == tiles[0].length - 2)){
-                            if(tiles[i][j].getValue() < tiles[i][j+1].getValue()){
-                                isValid = true;
-                            }else{
-                                return false;
-                            }
-                        }else if(isValid){
-                            return true;
-                        }
-                    }
-                }
-            }else{
-                return false;
-            }
-            return true;
-         */
     }
 
     public Action[] actions() { /** 22 **/
-        //"7 5 4|_ 3 2|8 1 6"
+
         Tile[][] tiles = board.getTiles();
         Action[] possibleActions = new Action[4];
         int count = 0;
@@ -75,7 +43,7 @@ public class State {
         for (int i = 0; i < numOfRow; i++) {
             isEmptyTile = false;
             for (int j = 0; j < numOfCol && !isEmptyTile; j++) {
-                if (tiles[i][j].getValue() == Tile.EMPTY_VALUE) {
+                if (tiles[i][j].getValue() == Tile.getEmptyValue()) {
                     emptyRow = i;
                     emptyCol = j;
                     isEmptyTile = true;
@@ -195,28 +163,6 @@ public class State {
                 possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
                 count++;
             }
-
-        /*
-        for(int i = 0; i < tiles.length; i++) {
-            for(int j = 0; j <  tiles[0].length; j++) {
-                if(tiles[i][j].equals("_")) {
-                    if(j == 0 && i == 0) {
-                        arrOfPossibleActions = new Action[]{new Action(Direction.LEFT), new Action(Direction.UP)};
-                    }
-                    if(j == 0 && i != 0 && i != (tiles.length - 1)) {
-                        arrOfPossibleActions = new Action[]{new Action(Direction.LEFT), new Action(Direction.UP), new Action(Direction.DOWN)};
-                    }
-                    if(j == 0 && i == (tiles.length - 1)) {
-                        arrOfPossibleActions = new Action[]{new Action(Direction.LEFT), new Action(Direction.DOWN)};
-                    }
-                    if(i == 0 && j != 0 && j != (tiles[0].length)) {
-                        arrOfPossibleActions = new Action[]{new Action(Direction.LEFT), new Action(Direction.RIGHT), new Action(Direction.UP)};
-                    }
-                }
-            }
-        }
-        return arrOfPossibleActions;
-         */
         }
         // Create a new array with the correct size and copy the actions
         Action[] actionsArray = new Action[count];
@@ -242,7 +188,7 @@ public class State {
         for (int i = 0; i < newTiles.length; i++) {
             boolean isEmptyTile = false;
             for (int j = 0; j < newTiles[i].length && !isEmptyTile; j++) {
-                if (newTiles[i][j].getValue() == Tile.EMPTY_VALUE) {
+                if (newTiles[i][j].getValue() == Tile.getEmptyValue()) {
                     emptyRow = i;
                     emptyCol = j;
                     isEmptyTile = true;
@@ -252,8 +198,6 @@ public class State {
 
         // Perform the action based on the direction
         Direction direction = action.getDirection();
-        int newRow = emptyRow;
-        int newCol = emptyCol;
         if (direction == Direction.UP) {
             int tempValue = newTiles[emptyRow + 1][emptyCol].getValue();
             newTiles[emptyRow][emptyCol] = new Tile(tempValue);
@@ -271,16 +215,9 @@ public class State {
             newTiles[emptyRow][emptyCol] = new Tile(tempValue);
             newTiles[emptyRow][emptyCol - 1] = new Tile(0);
         }
-
-        // Swap the empty tile with the adjacent tile
-        //Tile temp = newTiles[emptyRow][emptyCol];
-        //newTiles[emptyRow][emptyCol] = newTiles[newRow][newCol];
-        //newTiles[newRow][newCol] = temp;
         Board newBoard = new Board(newTiles);
-        State newState = new State(newBoard);
 
-        return newState; // Create and return the new state
-
+        return new State(newBoard); // Create and return the new state
     }
 
     @Override

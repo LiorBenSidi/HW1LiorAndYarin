@@ -47,11 +47,9 @@ public class Node { /* Contains information about the current state, the parent 
         return childNodes;
     }
     public int heuristicValue() {
-
         if (this.state.isGoal()) {
             return 0; // If the node's state is the goal state, the heuristic value is 0
         }
-
         int count = 0;
         Tile[][] currentTiles = this.state.getBoard().getTiles();
         Tile[][] goalTiles = this.state.getBoard().getGoalTiles();
@@ -64,33 +62,5 @@ public class Node { /* Contains information about the current state, the parent 
             }
         }
         return count;
-
-        /*
-        boolean firstFlag = true;
-        int preCount = 0;
-        int count = 0;
-        if(this.parent != null && this.childNodes != null) {
-            for(int i = 0; i < childNodes.length; i++) {
-                for(int j = 0; j < childNodes[i].getState().getBoard().getTiles().length; j++) {
-                    for(int k = 0; k < childNodes[i].getState().getBoard().getTiles()[0].length; k++) {
-                        if(this.childNodes[i].getState().getBoard().getTiles()[j][k]
-                                == this.childNodes[i].getState().getBoard().getGoalTiles()[j][k]) {
-                            count++;
-                        }
-                    }
-                }
-                if(firstFlag) {
-                    preCount = count;
-                    firstFlag = false;
-                }
-                if(preCount > count) {
-                    preCount = count;
-                }
-            }
-        }
-        this.hu = preCount;
-
-        return preCount;
-         */
     }
 }

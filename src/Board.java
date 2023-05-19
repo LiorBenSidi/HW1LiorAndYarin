@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class Board {
     private Tile[][] tiles;
-    private static Tile[][] goalTiles;
+    private Tile[][] goalTiles;
     private String strBoard;
     public Board(String strBoard) { /** 6 **/ //"7 5 4|_ 3 2|8 1 6" // Creates a board(matrix of tiles).
         this.strBoard = strBoard;
@@ -41,7 +41,6 @@ public class Board {
         Tile[][] tiles = this.tiles;
         int numRows = tiles.length;
         int numCols = tiles[0].length;
-
         this.goalTiles = new Tile[numRows][numCols];
         int value = 1;
         for(int i = 0; i < numRows; i++) {
@@ -50,7 +49,7 @@ public class Board {
                 value++;
             }
         }
-        goalTiles[numRows - 1][numCols - 1] = new Tile(Tile.EMPTY_VALUE);
+        goalTiles[numRows - 1][numCols - 1] = new Tile(Tile.getEmptyValue());
 
         return goalTiles;
     }
