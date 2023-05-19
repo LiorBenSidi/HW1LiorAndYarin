@@ -40,7 +40,7 @@ public class Node { /* Contains information about the current state, the parent 
         for (int i = 0; i < validActions.length; i++) { // Generate child nodes by applying each valid action to the current state
             Action action =  validActions[i];
             State nextState = currentState.result(action); /** 23 **/
-            Node parent = new Node(this.state);
+            Node parent = new Node(this.state, this.parent, this.action);
             Node childNode = new Node(nextState, parent, action);
             childNodes[i] = childNode;
         }

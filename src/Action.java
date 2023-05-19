@@ -36,7 +36,15 @@ public class Action { //"Action" in the game is defined by moving a tile to empt
         return direction;
     }
     public String toString() {
-        return "Move " + tile.getValue() + " " + direction;
+        if(direction == Direction.UP) {
+            return "Move " + tile.getValue() + " up";
+        } else if(direction == Direction.DOWN) {
+            return "Move " + tile.getValue() + " down";
+        } else if(direction == Direction.RIGHT) {
+            return "Move " + tile.getValue() + " right";
+        } else {
+            return "Move " + tile.getValue() + " left";
+        }
     }
 }
 
