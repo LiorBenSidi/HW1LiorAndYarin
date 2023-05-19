@@ -1,51 +1,71 @@
-public class Node { /* Contains information about the current state, the parent node,
-                    and the action that led to the current state from the parent node. */
-    private State state; /* Initialize an instance of "State", named "state". */
-    private Node parent; /* Initialize an instance of "Node", named "parent". */
-    private Action action   ; /* Initialize an instance of "Action", named "action". */
+public class Node {
+    private final State state;
+    private final Node parent;
+    private final Action action;
 
-    public Node(State state, Node parent, Action action) { /** 12 **/
+    /**
+     *
+     *
+     * @param state
+     * @param parent
+     * @param action
+     */
+    public Node(State state, Node parent, Action action) {
         this.state = state;
         this.parent = parent;
         this.action = action;
     }
 
-    public Node(State state) {
-        this.state = state;
-    }
-    public State getState() { /** 15 **/
+    /**
+     * @return
+     */
+    public State getState() {
         return this.state;
     }
 
-    public void setState(State state) {
-        this.state = state;
-    }
-
+    /**
+     * @return
+     */
     public Node getParent() {
         return this.parent;
     }
+
+    /**
+     * @return
+     */
     public Action getAction(){
         if(action == null){
             return null;
-        }else{
+        } else {
             action.toString();
             return this.action;
         }
     }
 
-    public Node[] expand() { /** 20 **/
+    /**
+     *
+     *
+     * @return
+     */
+    public Node[] expand() {
         State currentState = this.state; // Access the current state from the Node
-        Action[] validActions = currentState.actions(); /** 21 **/ // Get the valid actions that can be applied to the current state
+        Action[] validActions = currentState.actions(); // Get the valid actions that can be applied to the current state
         Node[] childNodes = new Node[validActions.length]; // Create an array to store the child nodes
         for (int i = 0; i < validActions.length; i++) { // Generate child nodes by applying each valid action to the current state
             Action action =  validActions[i];
-            State nextState = currentState.result(action); /** 23 **/
+            State nextState = currentState.result(action);
             Node parent = new Node(this.state, this.parent, this.action);
             Node childNode = new Node(nextState, parent, action);
             childNodes[i] = childNode;
         }
         return childNodes;
     }
+
+    /**
+     *
+     *
+     * @return
+     */
     public int heuristicValue() {
         if (this.state.isGoal()) {
             return 0; // If the node's state is the goal state, the heuristic value is 0

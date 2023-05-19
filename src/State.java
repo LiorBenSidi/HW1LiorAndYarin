@@ -1,20 +1,30 @@
 public class State {
+    private final Board board;
 
-    private Board board;
-    //public Action[] arrOfPossibleActions;
-    //public State(Tile[][] tiles) {
-    //  this.tiles = tiles;
-    //}
+    /**
+     * Constructor that gets an instance of Board,
+     * and define the attribute of instance of Board of the current instance of State.
+     *
+     * @param board Gets an instance of Board
+     */
     public State(Board board) { /** 8 **/
         this.board = board;
     }
 
+    /**
+     * @return The attribute of instance of Board of the current instance of Tile.
+     */
     public Board getBoard() {
         return board;
     }
 
-    public boolean isGoal() { /** 16 **/ // להשוות את הboard עם הלוח מטרה באמצעות מעבר על כל אחד מהאריחים
-        Tile[][] goalTiles = board.getGoalTiles(); /** 17 **/
+    /**
+     *
+     *
+     * @return
+     */
+    public boolean isGoal() { // להשוות את הלוח עם הלוח מטרה באמצעות מעבר על כל אחד מהאריחים
+        Tile[][] goalTiles = board.getGoalTiles();
         Tile[][] tiles = board.getTiles();
 
         // Compare the values of tiles with the goalTiles array.
@@ -28,7 +38,12 @@ public class State {
         return true; // All tiles match the goal configuration.
     }
 
-    public Action[] actions() { /** 22 **/
+    /**
+     *
+     *
+     * @return
+     */
+    public Action[] actions() {
 
         Tile[][] tiles = board.getTiles();
         Action[] possibleActions = new Action[4];
@@ -40,10 +55,10 @@ public class State {
         int emptyCol = 0;
         int numOfRow = tiles.length;
         int numOfCol = tiles[0].length;
-        for (int i = 0; i < numOfRow; i++) {
+        for(int i = 0; i < numOfRow; i++) {
             isEmptyTile = false;
-            for (int j = 0; j < numOfCol && !isEmptyTile; j++) {
-                if (tiles[i][j].getValue() == Tile.getEmptyValue()) {
+            for(int j = 0; j < numOfCol && !isEmptyTile; j++) {
+                if(tiles[i][j].getValue() == Tile.getEmptyValue()) {
                     emptyRow = i;
                     emptyCol = j;
                     isEmptyTile = true;
@@ -172,6 +187,12 @@ public class State {
         return actionsArray;
     }
 
+    /**
+     *
+     *
+     * @param action
+     * @return
+     */
     public State result(Action action) {
         // Create a deep copy of the current state's tiles
         Tile[][] tiles = board.getTiles();

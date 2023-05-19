@@ -22,11 +22,10 @@ public class Search {
         // TODO: Implement this function.
         // NOTE: This is the only function you need to modify in this class!
 
-        Board rootBoard = new Board(boardString);/** 5 **/
-        State rootState = new State(rootBoard); /** 7 **//* Creates an instance of "State", named "rootState",
-        that compose an instance of "Board", that gets "boardString". */
+        Board rootBoard = new Board(boardString);
+        State rootState = new State(rootBoard);
 
-        return new Node(rootState, null, null); /** 11 **/ /* Returns the instance of "Node" - "root". */
+        return new Node(rootState, null, null);
     }
 
     /**

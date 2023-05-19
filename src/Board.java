@@ -1,13 +1,15 @@
 import java.util.Arrays;
 
 public class Board {
+    private final Tile[][] tiles;
 
-    private Tile[][] tiles;
-    private Tile[][] goalTiles;
-    private String strBoard;
-    public Board(String strBoard) { /** 6 **/ //"7 5 4|_ 3 2|8 1 6" // Creates a board(matrix of tiles).
-        this.strBoard = strBoard;
-        String[] strBoardSplit = strBoard.split("\\|"); //["7 5 4","_ 3 2","8 1 6"]
+    /**
+     *
+     *
+     * @param strBoard
+     */
+    public Board(String strBoard) { // Creates a board(matrix of tiles).
+        String[] strBoardSplit = strBoard.split("\\|");
         int numOfCol = strBoardSplit[0].split(" ").length;
         int numOfRow = strBoardSplit.length;
         this.tiles = new Tile[numOfRow][numOfCol];
@@ -24,25 +26,25 @@ public class Board {
         }
     }
 
+    /**
+     *
+     *
+     * @param tiles
+     */
     public Board(Tile[][] tiles) {
         this.tiles = tiles;
     }
 
-    public void printBoard() {
-        for(int i = 0; i < tiles.length; i++) {
-            System.out.println();
-            for(int j = 0; j < tiles[0].length; j++) {
-                System.out.print(tiles[i][j]);
-            }
-            System.out.println();
-        }
-    }
-
-    public Tile[][] getGoalTiles() { /** 18 **/ // Gets the "Target Board".
+    /**
+     *
+     *
+     * @return
+     */
+    public Tile[][] getGoalTiles() { // Gets the "Target Board".
         Tile[][] tiles = this.tiles;
         int numRows = tiles.length;
         int numCols = tiles[0].length;
-        this.goalTiles = new Tile[numRows][numCols];
+        Tile[][] goalTiles = new Tile[numRows][numCols];
         int value = 1;
         for(int i = 0; i < numRows; i++) {
             for(int j = 0; j < numCols; j++) {
@@ -55,7 +57,12 @@ public class Board {
         return goalTiles;
     }
 
-    public Tile[][] getTiles() { /** 10 **/
+    /**
+     *
+     *
+     * @return
+     */
+    public Tile[][] getTiles() {
         return this.tiles;
     }
 
