@@ -4,9 +4,9 @@ public class Board {
     private final Tile[][] tiles;
 
     /**
+     * Constructs a Board object based on a string representation of the board
      *
-     *
-     * @param strBoard
+     * @param strBoard the string representation of the board
      */
     public Board(String strBoard) { // Creates a board(matrix of tiles).
         String[] strBoardSplit = strBoard.split("\\|");
@@ -27,18 +27,18 @@ public class Board {
     }
 
     /**
+     * Constructs a Board object based on a 2D array of tiles
      *
-     *
-     * @param tiles
+     * @param tiles the 2D array of tiles representing the board
      */
     public Board(Tile[][] tiles) {
         this.tiles = tiles;
     }
 
     /**
+     * Retrieves the goal tiles, representing the target board configuration
      *
-     *
-     * @return
+     * @return the 2D array of tiles representing the goal tiles
      */
     public Tile[][] getGoalTiles() { // Gets the "Target Board".
         Tile[][] tiles = this.tiles;
@@ -58,9 +58,9 @@ public class Board {
     }
 
     /**
+     * pull off the current tiles of the board.
      *
-     *
-     * @return
+     * @return the 2D array of tiles representing the current board
      */
     public Tile[][] getTiles() {
         return this.tiles;

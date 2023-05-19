@@ -3,10 +3,10 @@ public class Action { //"Action" in the game is defined by moving a tile to empt
     private final Direction direction;
 
     /**
+     * Constructs an Action object with the specified tile and direction
      *
-     *
-     * @param tile
-     * @param direction
+     * @param tile The tile to be moved
+     * @param direction The direction in which the tile will be moved
      */
     public Action(Tile tile, Direction direction) {
         this.tile = tile;
@@ -14,8 +14,7 @@ public class Action { //"Action" in the game is defined by moving a tile to empt
     }
 
     /**
-     *
-     * @return
+     * @return The direction of the action
      */
     public Direction getDirection() {
         return direction;
@@ -24,7 +23,7 @@ public class Action { //"Action" in the game is defined by moving a tile to empt
     /**
      *
      *
-     * @return
+     * @return A string representation of the action in the format "Move {tile value} {direction}"
      */
     public String toString() {
         if(direction == Direction.UP) {

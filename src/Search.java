@@ -32,7 +32,7 @@ public class Search {
      * Performs a Greedy Best First Search, using node heuristic function.
      *
      * @param boardString String representing the initial board
-     * @return List of actions which performing them will lead to the the goal state
+     * @return List of actions which performing them will lead to the goal state
      */
     public List<Action> search(String boardString) {
         try {
@@ -71,7 +71,7 @@ public class Search {
      * Extracts a solution from a given node by iterating backward from the node up to the root.
      * The given node satisfies node.getState().isGoal() == true.
      *
-     * @param node Node contains a the goal state
+     * @param node Node contains the goal state
      * @return List of actions to reach the goal state
      */
     private List<Action> extractSolution(Node node) {

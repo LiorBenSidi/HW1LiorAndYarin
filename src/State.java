@@ -19,11 +19,11 @@ public class State {
     }
 
     /**
+     * Checks if the current state is the goal state
      *
-     *
-     * @return
+     * @return  true if the current state is the goal state, false otherwise
      */
-    public boolean isGoal() { // להשוות את הלוח עם הלוח מטרה באמצעות מעבר על כל אחד מהאריחים
+    public boolean isGoal() {
         Tile[][] goalTiles = board.getGoalTiles();
         Tile[][] tiles = board.getTiles();
 
@@ -39,9 +39,9 @@ public class State {
     }
 
     /**
+     *  Generates an array of possible actions that can be performed from the current state
      *
-     *
-     * @return
+     * @return An array of Action objects representing the possible actions from the current state
      */
     public Action[] actions() {
 
@@ -188,10 +188,10 @@ public class State {
     }
 
     /**
+     * Generates a new State object resulting from applying the specified action to the current state
      *
-     *
-     * @param action
-     * @return
+     * @param action The Action object representing the action to be applied
+     * @return A new State object representing the state resulting from the applied action
      */
     public State result(Action action) {
         // Create a deep copy of the current state's tiles

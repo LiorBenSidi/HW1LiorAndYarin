@@ -4,11 +4,11 @@ public class Node {
     private final Action action;
 
     /**
+     * Constructs a Node object with the specified state, parent node, and action
      *
-     *
-     * @param state
-     * @param parent
-     * @param action
+     * @param state the state associated with the current node
+     * @param parent the parent node of the current node
+     * @param action the action taken to reach the current node from the parent node
      */
     public Node(State state, Node parent, Action action) {
         this.state = state;
@@ -17,21 +17,27 @@ public class Node {
     }
 
     /**
-     * @return
+     * Take the state associated with the node.
+     *
+     * @return the state of the node
      */
     public State getState() {
         return this.state;
     }
 
     /**
-     * @return
+     * Take the parent node of the current node
+     *
+     * @return the parent node
      */
     public Node getParent() {
         return this.parent;
     }
 
     /**
-     * @return
+     * Draw the action taken to reach the current node from the parent node
+     *
+     * @return the action taken
      */
     public Action getAction(){
         if(action == null){
@@ -43,9 +49,9 @@ public class Node {
     }
 
     /**
+     * Expands the current node by generating child nodes for each valid action
      *
-     *
-     * @return
+     * @return an array of child nodes
      */
     public Node[] expand() {
         State currentState = this.state; // Access the current state from the Node
@@ -62,9 +68,9 @@ public class Node {
     }
 
     /**
+     * Computes the heuristic value of the node
      *
-     *
-     * @return
+     * @return the heuristic value
      */
     public int heuristicValue() {
         if (this.state.isGoal()) {
