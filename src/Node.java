@@ -73,20 +73,20 @@ public class Node {
      * @return the heuristic value
      */
     public int heuristicValue() {
-        if (this.state.isGoal()) {
-            return 0; // If the node's state is the goal state, the heuristic value is 0.
-        }
-        int count = 0;
-        Tile[][] currentTiles = this.state.getBoard().getTiles();
-        Tile[][] goalTiles = this.state.getBoard().getGoalTiles();
+            if (this.state.isGoal()) {
+                return 0; // If the node's state is the goal state, the heuristic value is 0.
+            }
+            int count = 0;
+            Tile[][] currentTiles = this.state.getBoard().getTiles();
+            Tile[][] goalTiles = this.state.getBoard().getGoalTiles();
 
-        for (int i = 0; i < currentTiles.length; i++) {
-            for (int j = 0; j < currentTiles[i].length; j++) {
-                if (currentTiles[i][j].getValue() != goalTiles[i][j].getValue()) {
-                    count++; // Increment count for each tile that not in the correct position.
+            for (int i = 0; i < currentTiles.length; i++) {
+                for (int j = 0; j < currentTiles[i].length; j++) {
+                    if (currentTiles[i][j].getValue() != goalTiles[i][j].getValue()) {
+                        count++; // Increment count for each tile that not in the correct position.
+                    }
                 }
             }
-        }
-        return count;
+            return count;
     }
 }

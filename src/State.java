@@ -106,19 +106,19 @@ public class State {
         }
 
         if (emptyRow == 0 && rowFlag) {
-            if (emptyCol == 0) {
+            if (emptyCol == 0 && colFlag) {
                 possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
                 count++;
                 colFlag = false;
-            } else if (emptyCol == numOfCol - 1) {
+            } else if (emptyCol == numOfCol - 1 && colFlag) {
                 possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
                 count++;
                 colFlag = false;
-            } else {
+            } else if(colFlag){
                 possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
@@ -130,19 +130,19 @@ public class State {
         }
 
         if ((emptyRow == numOfRow - 1) && rowFlag) {
-            if (emptyCol == 0) {
+            if (emptyCol == 0 && colFlag) {
                 possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
                 count++;
                 colFlag = false;
-            } else if (emptyCol == numOfCol - 1) {
+            } else if (emptyCol == numOfCol - 1 && colFlag) {
                 possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
                 count++;
                 colFlag = false;
-            } else {
+            } else if(colFlag){
                 possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
@@ -154,21 +154,21 @@ public class State {
         }
 
         if (emptyRow > 0 && emptyRow < numOfRow - 1) {
-            if (emptyCol == 0) {
+            if (emptyCol == 0 && colFlag) {
                 possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
                 count++;
-            } else if (emptyCol == numOfCol - 1) {
+            } else if (emptyCol == numOfCol - 1 && colFlag) {
                 possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
                 count++;
-            } else {
+            } else if (colFlag){
                 possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
