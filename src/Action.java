@@ -1,6 +1,6 @@
 public class Action { //"Action" in the game is defined by moving a tile to empty space.
     private Tile tile;
-    private Direction direction;
+    private final Direction direction;
     public Action(Tile tile, Direction direction) {
         this.tile = tile;
         this.direction = direction;

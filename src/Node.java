@@ -38,7 +38,7 @@ public class Node { /* Contains information about the current state, the parent 
         Action[] validActions = currentState.actions(); /** 21 **/ // Get the valid actions that can be applied to the current state
         Node[] childNodes = new Node[validActions.length]; // Create an array to store the child nodes
         for (int i = 0; i < validActions.length; i++) { // Generate child nodes by applying each valid action to the current state
-            this.action = validActions[i];
+            Action action =  validActions[i];
             State nextState = currentState.result(action); /** 23 **/
             parent = new Node(this.state);
             Node childNode = new Node(nextState, parent, action);
