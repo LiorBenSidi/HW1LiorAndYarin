@@ -1,4 +1,4 @@
-public class Action { //"Action" in the game is defined by moving a tile to empty space.
+public class Action { /* "Action" in the game is defined by moving a tile to empty space. */
     private final Tile tile;
     private final Direction direction;
 

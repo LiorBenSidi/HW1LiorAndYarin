@@ -26,7 +26,7 @@ public class State {
         Tile[][] goalTiles = board.getGoalTiles();
         Tile[][] tiles = board.getTiles();
 
-        // Compare the values of tiles with the goalTiles array.
+        /* Compare the values of tiles with the goalTiles array. */
         for(int i = 0; i < tiles.length; i++) {
             for(int j = 0; j < tiles[i].length; j++) {
                 if(tiles[i][j].getValue() != (goalTiles[i][j]).getValue()) {
@@ -35,7 +35,7 @@ public class State {
             }
         }
 
-        return true; // All tiles match the goal configuration.
+        return true; /* All tiles match the goal configuration. */
     }
 
     /**
@@ -50,7 +50,7 @@ public class State {
         int count = 0;
         boolean isEmptyTile;
 
-        // Find the position of the empty tile.
+        /* Find the position of the empty tile. */
         int emptyRow = 0;
         int emptyCol = 0;
         int numOfRow = tiles.length;
@@ -66,7 +66,7 @@ public class State {
             }
         }
 
-        // Generate possible actions based on the position of the empty tile
+        /* Generate possible actions based on the position of the empty tile. */
         if(numOfRow == 1) {
             if(emptyCol == 0) {
                 possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1] ,Direction.LEFT);
@@ -162,7 +162,7 @@ public class State {
             }
         }
 
-        // Create a new array with the correct size and copy the actions
+        /* Create a new array with the correct size and copy the actions. */
         Action[] actionsArray = new Action[count];
         for(int i = 0; i < count; i++) {
             actionsArray[i] = possibleActions[i];
@@ -178,7 +178,7 @@ public class State {
      * @return A new State object representing the state resulting from the applied action.
      */
     public State result(Action action) {
-        // Create a deep copy of the current state's tiles
+        /* Create a deep copy of the current state's tiles. */
         Tile[][] tiles = board.getTiles();
         Tile[][] newTiles = new Tile[tiles.length][tiles[0].length];
         for(int i = 0; i < tiles.length; i++) {
@@ -187,7 +187,7 @@ public class State {
             }
         }
 
-        // Find the position of the empty tile
+        /* Find the position of the empty tile. */
         int emptyRow = 0;
         int emptyCol = 0;
         for(int i = 0; i < newTiles.length; i++) {
@@ -201,7 +201,7 @@ public class State {
             }
         }
 
-        // Perform the action based on the direction
+        /* Perform the action based on the direction. */
         Direction direction = action.getDirection();
         if(direction == Direction.UP) {
             int tempValue = newTiles[emptyRow + 1][emptyCol].getValue();
@@ -222,7 +222,7 @@ public class State {
         }
         Board newBoard = new Board(newTiles);
 
-        return new State(newBoard); // Creates and returns the new state.
+        return new State(newBoard); /* Creates and returns the new state. */
     }
 
     @Override

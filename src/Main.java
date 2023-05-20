@@ -21,7 +21,7 @@ public class Main {
                 successCounter++;
             }
         }
-        System.out.println("Able to solve " + successCounter + " ot of " + boards.length + " boards.");
+        System.out.println("Able to solve " + successCounter + " out of " + boards.length + " boards.");
     }
 
     /**
