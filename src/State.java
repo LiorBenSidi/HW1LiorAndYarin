@@ -57,7 +57,7 @@ public class State {
         for(int i = 0; i < numOfRow; i++) {
             isEmptyTile = false;
             for(int j = 0; j < numOfCol && !isEmptyTile; j++) {
-                if(tiles[i][j].getValue() == Tile.getEmptyValue()) {
+                if(tiles[i][j].getValue() == 0) {
                     emptyRow = i;
                     emptyCol = j;
                     isEmptyTile = true;
@@ -66,118 +66,101 @@ public class State {
         }
 
         // Generate possible actions based on the position of the empty tile
-        boolean colFlag = true;
-        boolean rowFlag = true;
-        if (numOfRow == 1) {
-            if (emptyCol == 0) {
+        if(numOfRow == 1) {
+            if(emptyCol == 0) {
                 possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1] ,Direction.LEFT);
                 count++;
-                rowFlag = false;
-            } else if (emptyCol == numOfCol - 1) { //not necessary
+            } else if(emptyCol == numOfCol - 1) { //not necessary
                 possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
                 count++;
-                rowFlag = false;
             } else {
                 possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1], Direction.RIGHT);
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
                 count++;
-                rowFlag = false;
             }
-        }
 
-        if (numOfCol == 1) {
+        } else if(numOfCol == 1) {
             if (emptyRow == 0) {
                 possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
                 count++;
-                colFlag = false;
-            } else if (emptyRow == numOfRow - 1) { //not necessary
+            } else if (emptyRow == numOfRow - 1) {
                 possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
                 count++;
-                colFlag = false;
             } else {
                 possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
                 count++;
-                colFlag = false;
+            }
+
+        } else if(emptyRow == 0) {
+            if(emptyCol == 0) {
+                possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
+                count++;
+                possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
+                count++;
+            } else if(emptyCol == numOfCol - 1) {
+                possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
+                count++;
+                possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
+                count++;
+            } else {
+                possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
+                count++;
+                possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
+                count++;
+                possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
+                count++;
+            }
+
+        } else if(emptyRow == numOfRow - 1) {
+            if(emptyCol == 0) {
+                possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
+                count++;
+                possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
+                count++;
+            } else if (emptyCol == numOfCol - 1) {
+                possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
+                count++;
+                possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
+                count++;
+            } else {
+                possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
+                count++;
+                possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
+                count++;
+                possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
+                count++;
+            }
+
+        } else if(emptyRow < numOfRow - 1) {
+            if (emptyCol == 0) {
+                possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
+                count++;
+                possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
+                count++;
+                possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
+                count++;
+            } else if (emptyCol == numOfCol - 1) {
+                possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
+                count++;
+                possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
+                count++;
+                possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
+                count++;
+            } else {
+                possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
+                count++;
+                possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
+                count++;
+                possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
+                count++;
+                possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
+                count++;
             }
         }
 
-        if (emptyRow == 0 && rowFlag) {
-            if (emptyCol == 0 && colFlag) {
-                possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
-                count++;
-                possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
-                count++;
-                colFlag = false;
-            } else if (emptyCol == numOfCol - 1 && colFlag) {
-                possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
-                count++;
-                possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
-                count++;
-                colFlag = false;
-            } else if(colFlag){
-                possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
-                count++;
-                possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
-                count++;
-                possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
-                count++;
-                colFlag = false;
-            }
-        }
-
-        if ((emptyRow == numOfRow - 1) && rowFlag) {
-            if (emptyCol == 0 && colFlag) {
-                possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
-                count++;
-                possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
-                count++;
-                colFlag = false;
-            } else if (emptyCol == numOfCol - 1 && colFlag) {
-                possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
-                count++;
-                possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
-                count++;
-                colFlag = false;
-            } else if(colFlag){
-                possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
-                count++;
-                possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
-                count++;
-                possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
-                count++;
-                colFlag = false;
-            }
-        }
-
-        if (emptyRow > 0 && emptyRow < numOfRow - 1) {
-            if (emptyCol == 0 && colFlag) {
-                possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
-                count++;
-                possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
-                count++;
-                possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
-                count++;
-            } else if (emptyCol == numOfCol - 1 && colFlag) {
-                possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
-                count++;
-                possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
-                count++;
-                possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
-                count++;
-            } else if (colFlag){
-                possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
-                count++;
-                possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
-                count++;
-                possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
-                count++;
-                possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
-                count++;
-            }
-        }
         // Create a new array with the correct size and copy the actions
         Action[] actionsArray = new Action[count];
         for (int i = 0; i < count; i++) {
@@ -208,7 +191,7 @@ public class State {
         for (int i = 0; i < newTiles.length; i++) {
             boolean isEmptyTile = false;
             for (int j = 0; j < newTiles[i].length && !isEmptyTile; j++) {
-                if (newTiles[i][j].getValue() == Tile.getEmptyValue()) {
+                if (newTiles[i][j].getValue() == 0) {
                     emptyRow = i;
                     emptyCol = j;
                     isEmptyTile = true;

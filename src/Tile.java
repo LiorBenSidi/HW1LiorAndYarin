@@ -1,6 +1,5 @@
 public class Tile {
     private final int value;
-    private static final int emptyValue = 0;
 
     /**
      * Constructs the attribute of integer value of the current instance of Tile.
@@ -16,13 +15,6 @@ public class Tile {
      */
     public int getValue() {
         return value;
-    }
-
-    /**
-     * @return The attribute of value of the current instance of Tile that represents an empty tile.
-     */
-    public static int getEmptyValue() {
-        return emptyValue;
     }
 
     @Override

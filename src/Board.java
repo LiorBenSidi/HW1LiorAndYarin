@@ -38,7 +38,7 @@ public class Board {
             }
         }
 
-        goalTiles[numRows - 1][numCols - 1] = new Tile(Tile.getEmptyValue());
+        goalTiles[numRows - 1][numCols - 1] = new Tile(0);
 
     }
 
