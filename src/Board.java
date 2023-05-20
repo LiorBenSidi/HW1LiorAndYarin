@@ -6,11 +6,12 @@ public class Board {
 
     /**
      * Constructs a Board object based on a string representation of the board.
-     * Creates the goal tiles, representing the target board configuration.
+     * Constructs the goal tiles, representing the target board configuration.
      *
      * @param strBoard The string representation of the board.
      */
     public Board(String strBoard) {
+        // Constructs a Board object based on a string representation of the board.
         String[] strBoardSplit = strBoard.split("\\|");
         int numOfCol = strBoardSplit[0].split(" ").length;
         int numOfRow = strBoardSplit.length;
@@ -27,6 +28,7 @@ public class Board {
             }
         }
 
+        // Constructs the goal tiles, representing the target board configuration.
         int numRows = tiles.length;
         int numCols = tiles[0].length;
         goalTiles = new Tile[numRows][numCols];
@@ -37,9 +39,7 @@ public class Board {
                 value++;
             }
         }
-
         goalTiles[numRows - 1][numCols - 1] = new Tile(0);
-
     }
 
     /**
@@ -57,7 +57,7 @@ public class Board {
      * @return the 2D array of tiles representing the current board.
      */
     public Tile[][] getTiles() {
-        return this.tiles;
+        return tiles;
     }
 
     /**

@@ -34,6 +34,7 @@ public class State {
                 }
             }
         }
+
         return true; // All tiles match the goal configuration.
     }
 
@@ -81,10 +82,10 @@ public class State {
             }
 
         } else if(numOfCol == 1) {
-            if (emptyRow == 0) {
+            if(emptyRow == 0) {
                 possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
                 count++;
-            } else if (emptyRow == numOfRow - 1) {
+            } else if(emptyRow == numOfRow - 1) {
                 possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
                 count++;
             } else {
@@ -120,7 +121,7 @@ public class State {
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
                 count++;
-            } else if (emptyCol == numOfCol - 1) {
+            } else if(emptyCol == numOfCol - 1) {
                 possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow][emptyCol - 1],Direction.RIGHT);
@@ -135,14 +136,14 @@ public class State {
             }
 
         } else if(emptyRow < numOfRow - 1) {
-            if (emptyCol == 0) {
+            if(emptyCol == 0) {
                 possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow][emptyCol+1], Direction.LEFT);
                 count++;
-            } else if (emptyCol == numOfCol - 1) {
+            } else if(emptyCol == numOfCol - 1) {
                 possibleActions[count] = new Action(tiles[emptyRow + 1][emptyCol], Direction.UP);
                 count++;
                 possibleActions[count] = new Action(tiles[emptyRow - 1][emptyCol], Direction.DOWN);
@@ -166,6 +167,7 @@ public class State {
         for (int i = 0; i < count; i++) {
             actionsArray[i] = possibleActions[i];
         }
+
         return actionsArray;
     }
 
@@ -223,10 +225,9 @@ public class State {
         return new State(newBoard); // Creates and returns the new state.
     }
 
-
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof State)) {
+        if(!(other instanceof State)) {
             return false;
         }
         State otherState = (State) other;
