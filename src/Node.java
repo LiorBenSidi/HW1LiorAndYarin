@@ -56,7 +56,7 @@ public class Node {
         Node[] childNodes = new Node[validActions.length];
 
         // Generate child nodes by applying each valid action to the current state
-        for (int i = 0; i < validActions.length; i++) {
+        for(int i = 0; i < validActions.length; i++) {
             Action action = validActions[i];
             State nextState = state.result(action);
             Node childNode = new Node(nextState, this, action);
@@ -72,7 +72,7 @@ public class Node {
      * @return the heuristic value.
      */
     public int heuristicValue() {
-        if (this.state.isGoal()) {
+        if(this.state.isGoal()) {
             return 0; // Sets the heuristic value to 0 if the node's state is the goal state.
         }
 
@@ -80,9 +80,9 @@ public class Node {
         Tile[][] currentTiles = state.getBoard().getTiles();
         Tile[][] goalTiles = state.getBoard().getGoalTiles();
 
-        for (int i = 0; i < currentTiles.length; i++) {
-            for (int j = 0; j < currentTiles[i].length; j++) {
-                if (currentTiles[i][j].getValue() != goalTiles[i][j].getValue()) {
+        for(int i = 0; i < currentTiles.length; i++) {
+            for(int j = 0; j < currentTiles[i].length; j++) {
+                if(currentTiles[i][j].getValue() != goalTiles[i][j].getValue()) {
                     count++; // If a tile isn't in the correct position, increment count.
                 }
             }

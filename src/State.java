@@ -164,7 +164,7 @@ public class State {
 
         // Create a new array with the correct size and copy the actions
         Action[] actionsArray = new Action[count];
-        for (int i = 0; i < count; i++) {
+        for(int i = 0; i < count; i++) {
             actionsArray[i] = possibleActions[i];
         }
 
@@ -190,10 +190,10 @@ public class State {
         // Find the position of the empty tile
         int emptyRow = 0;
         int emptyCol = 0;
-        for (int i = 0; i < newTiles.length; i++) {
+        for(int i = 0; i < newTiles.length; i++) {
             boolean isEmptyTile = false;
-            for (int j = 0; j < newTiles[i].length && !isEmptyTile; j++) {
-                if (newTiles[i][j].getValue() == 0) {
+            for(int j = 0; j < newTiles[i].length && !isEmptyTile; j++) {
+                if(newTiles[i][j].getValue() == 0) {
                     emptyRow = i;
                     emptyCol = j;
                     isEmptyTile = true;
@@ -203,19 +203,19 @@ public class State {
 
         // Perform the action based on the direction
         Direction direction = action.getDirection();
-        if (direction == Direction.UP) {
+        if(direction == Direction.UP) {
             int tempValue = newTiles[emptyRow + 1][emptyCol].getValue();
             newTiles[emptyRow][emptyCol] = new Tile(tempValue);
             newTiles[emptyRow + 1][emptyCol] = new Tile(0);
-        } else if (direction == Direction.DOWN) {
+        } else if(direction == Direction.DOWN) {
             int tempValue = newTiles[emptyRow - 1][emptyCol].getValue();
             newTiles[emptyRow][emptyCol] = new Tile(tempValue);
             newTiles[emptyRow - 1][emptyCol] = new Tile(0);
-        } else if (direction == Direction.LEFT) {
+        } else if(direction == Direction.LEFT) {
             int tempValue = newTiles[emptyRow][emptyCol + 1].getValue();
             newTiles[emptyRow][emptyCol] = new Tile(tempValue);
             newTiles[emptyRow][emptyCol + 1] = new Tile(0);
-        } else if (direction == Direction.RIGHT) {
+        } else if(direction == Direction.RIGHT) {
             int tempValue = newTiles[emptyRow][emptyCol - 1].getValue();
             newTiles[emptyRow][emptyCol] = new Tile(tempValue);
             newTiles[emptyRow][emptyCol - 1] = new Tile(0);
