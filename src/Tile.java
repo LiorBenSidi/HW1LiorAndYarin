@@ -1,9 +1,9 @@
 public class Tile {
     private final int value;
-    private static final int EMPTY_VALUE = 0;
+    private static final int emptyValue = 0;
 
     /**
-     * Constructor that gets an integer value, and define the attribute of integer value of the current instance of Tile.
+     * Constructs the attribute of integer value of the current instance of Tile.
      *
      * @param value Gets an integer value.
      */
@@ -12,7 +12,7 @@ public class Tile {
     }
 
     /**
-     * @return The attribute of value of the current instance of Tile.
+     * @return the attribute of value of the current instance of Tile.
      */
     public int getValue() {
         return value;
@@ -22,7 +22,7 @@ public class Tile {
      * @return The attribute of value of the current instance of Tile that represents an empty tile.
      */
     public static int getEmptyValue() {
-        return EMPTY_VALUE;
+        return emptyValue;
     }
 
     @Override

@@ -22,7 +22,7 @@ public class Node {
      * @return the state of the node
      */
     public State getState() {
-        return this.state;
+        return state;
     }
 
     /**
@@ -31,7 +31,7 @@ public class Node {
      * @return the parent node
      */
     public Node getParent() {
-        return this.parent;
+        return parent;
     }
 
     /**
@@ -44,38 +44,44 @@ public class Node {
             return null;
         } else {
             action.toString();
-            return this.action;
+            return action;
         }
     }
 
     /**
-     * Expands the current node by generating child nodes for each valid action
+     * Expands the current node by generating child nodes for each valid action.
      *
-     * @return an array of child nodes
+     * @return an array of child nodes.
      */
     public Node[] expand() {
-        State currentState = this.state; // Access the current state from the Node
-        Action[] validActions = currentState.actions(); // Get the valid actions that can be applied to the current state
-        Node[] childNodes = new Node[validActions.length]; // Create an array to store the child nodes
-        for (int i = 0; i < validActions.length; i++) { // Generate child nodes by applying each valid action to the current state
+        // Access the current state from the Node.
+        State currentState = state;
+        // Gets the valid actions that can be applied to the current state.
+        Action[] validActions = currentState.actions();
+        // Create an array to store the child nodes
+        Node[] childNodes = new Node[validActions.length];
+        // Generate child nodes by applying each valid action to the current state
+        for(int i = 0; i < validActions.length; i++) {
             Action action =  validActions[i];
             State nextState = currentState.result(action);
             Node parent = new Node(this.state, this.parent, this.action);
             Node childNode = new Node(nextState, parent, action);
             childNodes[i] = childNode;
         }
+
         return childNodes;
     }
 
     /**
-     * Computes the heuristic value of the node
+     * Computes the heuristic value of the node.
      *
-     * @return the heuristic value
+     * @return the heuristic value.
      */
     public int heuristicValue() {
             if (this.state.isGoal()) {
-                return 0; // If the node's state is the goal state, the heuristic value is 0.
+                return 0; // Sets the heuristic value to 0 if the node's state is the goal state.
             }
+
             int count = 0;
             Tile[][] currentTiles = this.state.getBoard().getTiles();
             Tile[][] goalTiles = this.state.getBoard().getGoalTiles();
@@ -83,10 +89,11 @@ public class Node {
             for (int i = 0; i < currentTiles.length; i++) {
                 for (int j = 0; j < currentTiles[i].length; j++) {
                     if (currentTiles[i][j].getValue() != goalTiles[i][j].getValue()) {
-                        count++; // Increment count for each tile that not in the correct position.
+                        count++; // If a tile isn't in the correct position, increment count.
                     }
                 }
             }
+
             return count;
     }
 }

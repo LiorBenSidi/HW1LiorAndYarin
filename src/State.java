@@ -2,12 +2,11 @@ public class State {
     private final Board board;
 
     /**
-     * Constructor that gets an instance of Board,
-     * and define the attribute of instance of Board of the current instance of State.
+     * Constructs the attribute of instance of Board of the current instance of State.
      *
      * @param board Gets an instance of Board
      */
-    public State(Board board) { /** 8 **/
+    public State(Board board) {
         this.board = board;
     }
 
@@ -21,7 +20,7 @@ public class State {
     /**
      * Checks if the current state is the goal state
      *
-     * @return  true if the current state is the goal state, false otherwise
+     * @return true if the current state is the goal state, false otherwise.
      */
     public boolean isGoal() {
         Tile[][] goalTiles = board.getGoalTiles();
@@ -39,9 +38,9 @@ public class State {
     }
 
     /**
-     *  Generates an array of possible actions that can be performed from the current state
+     * Generates an array of possible actions that can be performed from the current state.
      *
-     * @return An array of Action objects representing the possible actions from the current state
+     * @return An array of Action objects representing the possible actions from the current state.
      */
     public Action[] actions() {
 
@@ -188,17 +187,17 @@ public class State {
     }
 
     /**
-     * Generates a new State object resulting from applying the specified action to the current state
+     * Generates a new State object resulting from applying the specified action to the current state.
      *
-     * @param action The Action object representing the action to be applied
-     * @return A new State object representing the state resulting from the applied action
+     * @param action The Action object representing the action to be applied.
+     * @return A new State object representing the state resulting from the applied action.
      */
     public State result(Action action) {
         // Create a deep copy of the current state's tiles
         Tile[][] tiles = board.getTiles();
         Tile[][] newTiles = new Tile[tiles.length][tiles[0].length];
-        for (int i = 0; i < tiles.length; i++) {
-            for (int j = 0; j < tiles[i].length; j++) {
+        for(int i = 0; i < tiles.length; i++) {
+            for(int j = 0; j < tiles[i].length; j++) {
                 newTiles[i][j] = new Tile(tiles[i][j].getValue());
             }
         }
@@ -238,7 +237,7 @@ public class State {
         }
         Board newBoard = new Board(newTiles);
 
-        return new State(newBoard); // Create and return the new state
+        return new State(newBoard); // Creates and returns the new state.
     }
 
 

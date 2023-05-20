@@ -2,13 +2,15 @@ import java.util.Arrays;
 
 public class Board {
     private final Tile[][] tiles;
+    private static Tile[][] goalTiles;
 
     /**
-     * Constructs a Board object based on a string representation of the board
+     * Constructs a Board object based on a string representation of the board.
+     * Creates the goal tiles, representing the target board configuration.
      *
-     * @param strBoard the string representation of the board
+     * @param strBoard The string representation of the board.
      */
-    public Board(String strBoard) { // Creates a board(matrix of tiles).
+    public Board(String strBoard) {
         String[] strBoardSplit = strBoard.split("\\|");
         int numOfCol = strBoardSplit[0].split(" ").length;
         int numOfRow = strBoardSplit.length;
@@ -24,27 +26,10 @@ public class Board {
                 }
             }
         }
-    }
 
-    /**
-     * Constructs a Board object based on a 2D array of tiles
-     *
-     * @param tiles the 2D array of tiles representing the board
-     */
-    public Board(Tile[][] tiles) {
-        this.tiles = tiles;
-    }
-
-    /**
-     * Retrieves the goal tiles, representing the target board configuration
-     *
-     * @return the 2D array of tiles representing the goal tiles
-     */
-    public Tile[][] getGoalTiles() { // Gets the "Target Board".
-        Tile[][] tiles = this.tiles;
         int numRows = tiles.length;
         int numCols = tiles[0].length;
-        Tile[][] goalTiles = new Tile[numRows][numCols];
+        goalTiles = new Tile[numRows][numCols];
         int value = 1;
         for(int i = 0; i < numRows; i++) {
             for(int j = 0; j < numCols; j++) {
@@ -52,18 +37,36 @@ public class Board {
                 value++;
             }
         }
+
         goalTiles[numRows - 1][numCols - 1] = new Tile(Tile.getEmptyValue());
 
-        return goalTiles;
     }
 
     /**
-     * pull off the current tiles of the board.
+     * Constructs a Board object based on a 2D array of tiles.
      *
-     * @return the 2D array of tiles representing the current board
+     * @param tiles The 2D array of tiles representing the board.
+     */
+    public Board(Tile[][] tiles) {
+        this.tiles = tiles;
+    }
+
+    /**
+     * Pull off the current tiles of the board.
+     *
+     * @return the 2D array of tiles representing the current board.
      */
     public Tile[][] getTiles() {
         return this.tiles;
+    }
+
+    /**
+     * Retrieves the goal tiles, representing the target board configuration.
+     *
+     * @return The 2D array of tiles representing the goal tiles.
+     */
+    public Tile[][] getGoalTiles() { // Gets the "Target Board".
+        return goalTiles;
     }
 
     @Override
