@@ -1,44 +1,28 @@
+/**
+ * The Node class represents a node in a search algorithm for a "Sliding Puzzle" game.
+ * It contains information about the state, parent node, and the action that was taken to reach the current node.
+ * This class also used to expand the current node by generating child nodes for each valid action.
+ * In addition, it used to computes the heuristic value of the node.
+ */
 public class Node {
     private final State state;
     private final Node parent;
     private final Action action;
 
-    /**
-     * Constructs a Node object with the specified state, parent node, and action.
-     *
-     * @param state  the state associated with the current node.
-     * @param parent the parent node of the current node.
-     * @param action the action taken to reach the current node from the parent node.
-     */
     public Node(State state, Node parent, Action action) {
         this.state = state;
         this.parent = parent;
         this.action = action;
     }
 
-    /**
-     * Take the state associated with the node.
-     *
-     * @return the state of the node.
-     */
     public State getState() {
         return state;
     }
 
-    /**
-     * Take the parent node of the current node.
-     *
-     * @return the parent node.
-     */
     public Node getParent() {
         return parent;
     }
 
-    /**
-     * Draw the action taken to reach the current node from the parent node.
-     *
-     * @return the action taken.
-     */
     public Action getAction() {
         return action;
     }
@@ -72,49 +56,55 @@ public class Node {
      * @return the heuristic value.
      */
     public int heuristicValue() {
-      int h1 = calculateHeuristic1();
-      int h2 = calculateHeuristic2();
-      return (int)(0.1 * h1 + 0.9 * h2);
+        int h1 = calculateHeuristic1();
+        int h2 = calculateHeuristic2();
+
+        /* According to a tests we did, we choose to calculate this way: */
+        return (int)(0.1 * h1 + 0.9 * h2);
     }
 
     /**
-     * Calculates the heuristic value for the sliding puzzle game
-     * find the first option for the heuristic value
-     * @return The heuristic value for the current state of the sliding puzzle game
+     * Calculates the heuristic value for the sliding puzzle game.
+     * Find the first option for the heuristic value.
+     *
+     * @return The distance between the current position and the target position of the tile.
      */
     public int calculateHeuristic1() {
-        Tile[][] size = state.getBoard().getTiles();
-        int heuristic = 0;
+        Tile[][] tiles = state.getBoard().getTiles();
+        int distance = 0;
 
-        // Calculate a distance measure that is calculated by taking the sum of distances between the x and y coordinates
-        for (int i = 0; i < size.length; i++) {
-            for (int j = 0; j < size[i].length; j++) {
-                int value = size[i][j].getValue();
-                if (value != 0) {  // Ignore the empty tile
-                    int targetRow = (value - 1) / size.length;
-                    int targetCol = (value - 1) % size.length;
-                    // Calculate the distance between the current position and the target position
-                    if((i - targetRow)<0) {
-                        heuristic += -1*(i - targetRow);
-                    }else{
-                        heuristic += (i - targetRow);
+        /* Calculate a distance measure that is calculated by taking the sum of distances,
+         between the row and column coordinates. */
+        for(int i = 0; i < tiles.length; i++) {
+            for(int j = 0; j < tiles[i].length; j++) {
+                int value = tiles[i][j].getValue();
+                if(value != 0) {
+                    int RowOfTarget = (value - 1) / tiles.length;
+                    int ColOfTarget = (value - 1) % tiles.length;
+
+                    /* Calculate the distance between the current position and the target position of the tile. */
+                    if((i - RowOfTarget)<0) {
+                        distance += (-1) * (i - RowOfTarget);
+                    } else {
+                        distance += (i - RowOfTarget);
                     }
-                    if ((j - targetCol)<0){
-                        heuristic += -1*(j - targetCol);
-                    }else{
-                        heuristic += (j - targetCol);
+                    if((j - ColOfTarget)<0){
+                        distance += -1*(j - ColOfTarget);
+                    } else {
+                        distance += (j - ColOfTarget);
                     }
                 }
             }
         }
 
-        return heuristic;
+        return distance;
     }
 
     /**
-     * Calculates the heuristic value for the sliding puzzle game
-     * find the second option for heuristic value
-     * @return the board with the least tiles that are not in place
+     * Calculates the heuristic value for the "sliding puzzle" game.
+     * Find the second option for heuristic value.
+     *
+     * @return The least number of tiles that are not in place compared to the goal board.
      */
     public int calculateHeuristic2(){
         if(this.state.isGoal()) {

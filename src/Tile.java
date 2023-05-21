@@ -1,18 +1,13 @@
+/**
+ * The Tile class represents a tile in the "Sliding Puzzle" game.
+ */
 public class Tile {
     private final int value;
 
-    /**
-     * Constructs the attribute of integer value of the current instance of Tile.
-     *
-     * @param value Gets an integer value.
-     */
     public Tile(int value) {
         this.value = value;
     }
 
-    /**
-     * @return the attribute of value of the current instance of Tile.
-     */
     public int getValue() {
         return value;
     }

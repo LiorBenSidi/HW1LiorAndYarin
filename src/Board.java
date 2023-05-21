@@ -1,5 +1,9 @@
 import java.util.Arrays;
 
+/**
+ * The Bord class represents a board configuration for "Sliding Puzzle" game.
+ * It contains a 2D array of Tile objects, representing the tiles on the board.
+ */
 public class Board {
     private final Tile[][] tiles;
     private static Tile[][] goalTiles;
@@ -42,29 +46,14 @@ public class Board {
         goalTiles[numRows - 1][numCols - 1] = new Tile(0);
     }
 
-    /**
-     * Constructs a Board object based on a 2D array of tiles.
-     *
-     * @param tiles The 2D array of tiles representing the board.
-     */
     public Board(Tile[][] tiles) {
         this.tiles = tiles;
     }
 
-    /**
-     * Pull off the current tiles of the board.
-     *
-     * @return the 2D array of tiles representing the current board.
-     */
     public Tile[][] getTiles() {
         return tiles;
     }
 
-    /**
-     * Retrieves the goal tiles, representing the target board configuration.
-     *
-     * @return The 2D array of tiles representing the goal tiles.
-     */
     public Tile[][] getGoalTiles() {
         return goalTiles;
     }

@@ -1,18 +1,16 @@
+/**
+ * The State class represents a state in a "Sliding Puzzle" game.
+ * This class also used to check if the specific state represents the goal state.
+ * Additionally, we use it to generate an array of possible actions that can be performed from the current state.
+ * In addition, it used to generate a new State object resulting from applying the specified action to the current state.
+ */
 public class State {
     private final Board board;
 
-    /**
-     * Constructs the attribute of instance of Board of the current instance of State.
-     *
-     * @param board Gets an instance of Board
-     */
     public State(Board board) {
         this.board = board;
     }
 
-    /**
-     * @return The attribute of instance of Board of the current instance of Tile.
-     */
     public Board getBoard() {
         return board;
     }
